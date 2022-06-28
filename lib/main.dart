@@ -22,7 +22,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColorDark: Colors.black,
         primarySwatch: Colors.blue,
-        cardColor: Colors.black,
+        cardColor: Colors.grey[900],
+        dividerTheme: DividerThemeData(color: Colors.grey[850]),
       ),
       home: const HomePage(),
     );
