@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_desafio/models/stories_bubble.dart';
 
 enum PopupMenuInsta {
   seguindo,
@@ -11,7 +12,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.black,
         title: PopupMenuButton<PopupMenuInsta>(
           padding: const EdgeInsets.all(0),
           position: PopupMenuPosition.under,
@@ -26,32 +29,33 @@ class HomePage extends StatelessWidget {
           itemBuilder: (BuildContext context) {
             return <PopupMenuItem<PopupMenuInsta>>[
               PopupMenuItem<PopupMenuInsta>(
-                height: 1,
-                padding: const EdgeInsets.fromLTRB(8, 8, 0, 8),
                 value: PopupMenuInsta.seguindo,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
-                    Text('Seguindo'),
+                    Text(
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                        'Seguindo'),
                     Icon(
-                      color: Colors.black,
                       Icons.how_to_reg,
                     ),
                   ],
                 ),
               ),
               PopupMenuItem<PopupMenuInsta>(
-                height: 1,
-                padding: const EdgeInsets.fromLTRB(8, 8, 0, 0),
                 value: PopupMenuInsta.favoritos,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: const [
-                    Text('Favoritos'),
-                    Expanded(
-                      child: Icon(
-                        color: Colors.black,
-                        Icons.star_border,
-                      ),
+                    Text(
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                        'Favoritos'),
+                    Icon(
+                      Icons.star_border,
                     ),
                   ],
                 ),
@@ -64,9 +68,8 @@ class HomePage extends StatelessWidget {
               children: const [
                 Text(
                   style: TextStyle(
-                    fontSize: 30,
-                    fontFamily: 'DancingScript',
-                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    fontFamily: 'BlueVinil',
                   ),
                   'Kakogram',
                 ),
@@ -76,6 +79,35 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add_box_outlined),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.favorite_border_rounded),
+          ),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.chat_outlined),
+          ),
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: const [
+              StoriesBubble(
+                imageUrl:
+                    'https://media-exp2.licdn.com/dms/image/C4E03AQFsCnlCKnx_MA/profile-displayphoto-shrink_800_800/0/1601238197714?e=1661990400&v=beta&t=-W3csJ2_PiDPqbJrqjpMFufQq6hkLx9YZwJ1uY41wdY',
+                name: 'Sérgio',
+              ),
+            ],
           ),
         ),
       ),

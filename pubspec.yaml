@@ -79,6 +79,11 @@ flutter:
         - asset: assets/fonts/DancingScript-Regular.ttf
         - asset: assets/fonts/DancingScript-Bold.ttf
           weight: 700
+    - family: BlueVinil
+      fonts:
+        - asset: assets/fonts/BlueVinil-Regular.ttf
+        - asset: assets/fonts/BlueVinil-Bold.ttf
+          weight: 700
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
