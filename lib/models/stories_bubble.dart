@@ -3,15 +3,30 @@ import 'package:flutter/material.dart';
 class StoriesBubble extends StatelessWidget {
   final String imageUrl;
   final String name;
+  final bool isFeed;
 
   const StoriesBubble({
     required this.imageUrl,
     required this.name,
+    required this.isFeed,
     Key? key,
   }) : super(key: key);
 
+  Widget isStories(bool isFeed) {
+    if (isFeed) {
+      return Text(
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+          name);
+    } else {
+      return const SizedBox();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context);
     return Column(
       children: [
         Padding(
@@ -66,11 +81,7 @@ class StoriesBubble extends StatelessWidget {
             ],
           ),
         ),
-        Text(
-            style: const TextStyle(
-              color: Colors.white,
-            ),
-            name),
+        isStories(isFeed),
       ],
     );
   }
