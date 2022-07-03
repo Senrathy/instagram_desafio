@@ -27,6 +27,80 @@ class Feed extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.black,
           appBar: AppBar(
+            actions: [
+              IconButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                    backgroundColor: Colors.transparent,
+                    context: context,
+                    builder: (context) {
+                      return Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[900],
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(18),
+                            topRight: Radius.circular(18),
+                          ),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Text(
+                                'Ocultar anúncio',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.red[800],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 25,
+                              ),
+                              Text(
+                                'Denunciar anúncio',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.red[800],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 25,
+                              ),
+                              Text(
+                                'Sobre esta conta',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 25,
+                              ),
+                              Text(
+                                'Sobre os anúncios do Kakogram',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
+                icon: Icon(Icons.menu),
+              ),
+            ],
             shape: Border.all(
               color: Colors.black,
             ),
@@ -49,8 +123,8 @@ class Feed extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(5),
                   child: Text(
-                      style:
-                          const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                      style: const TextStyle(
+                          fontSize: 13, fontWeight: FontWeight.bold),
                       ownersName),
                 ),
               ],
