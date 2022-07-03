@@ -4,39 +4,56 @@ class StoriesBubble extends StatelessWidget {
   final String imageUrl;
   final String name;
   final bool isFeed;
+  final BuildContext contexto;
+  final bool isToolbar;
 
   const StoriesBubble({
     required this.imageUrl,
     required this.name,
     required this.isFeed,
+    required this.contexto,
+    required this.isToolbar,
     Key? key,
   }) : super(key: key);
 
   Widget isStories(bool isFeed) {
-    if (isFeed) {
+    if (!isFeed) {
       return Text(
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: const TextStyle(
             color: Colors.white,
           ),
-          name);
+          name.length > 10 ? '${name.substring(0, 10)}...' : name);
     } else {
-      return const SizedBox();
+      return const SizedBox(
+        width: 0,
+        height: 0,
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    var mediaQuery = MediaQuery.of(context);
+    double isAppbar(bool isToolbar) {
+      if (isToolbar) {
+        return kToolbarHeight - 8;
+      } else {
+        return 75;
+      }
+    }
+
+    var mediaQuery = isAppbar(isToolbar);
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(6, 0, 6, 8),
+          padding: const EdgeInsets.fromLTRB(8, 0, 6, 8),
           child: Stack(
             alignment: Alignment.center,
             children: [
               Container(
-                width: 75,
-                height: 75,
+                width: mediaQuery,
+                height: mediaQuery,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
                     colors: [
@@ -51,8 +68,8 @@ class StoriesBubble extends StatelessWidget {
                 ),
               ),
               Container(
-                width: 70,
-                height: 70,
+                width: mediaQuery - 5,
+                height: mediaQuery - 5,
                 decoration: BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.circular(100),
@@ -60,8 +77,8 @@ class StoriesBubble extends StatelessWidget {
                 padding: const EdgeInsets.all(8),
               ),
               Container(
-                width: 68,
-                height: 68,
+                width: mediaQuery - 7,
+                height: mediaQuery - 7,
                 padding: const EdgeInsets.all(3),
                 child: CircleAvatar(
                   radius: 68,

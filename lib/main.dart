@@ -20,10 +20,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Kakogram',
       theme: ThemeData(
+        bottomAppBarColor: Colors.black,
+        bottomAppBarTheme: const BottomAppBarTheme(color: Colors.black),
         primaryColorDark: Colors.black,
         primarySwatch: Colors.blue,
         cardColor: Colors.grey[900],
         dividerTheme: DividerThemeData(color: Colors.grey[850]),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       home: const HomePage(),
     );

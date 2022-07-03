@@ -2,17 +2,132 @@ import 'package:flutter/material.dart';
 import 'package:instagram_desafio/models/stories_bubble.dart';
 
 class Feed extends StatelessWidget {
-  const Feed({required imageUrl, Key? key}) : super(key: key);
+  final String feedImage;
+  final String ownerPortrait;
+  final String ownersName;
+  static const curtidas = '22.345 curtidas';
+  static const comentarioPrincipal =
+      'Exemplo de apresentação de feed com comentário que deve ser verificado depois';
+
+  const Feed({
+    required this.feedImage,
+    required this.ownerPortrait,
+    required this.ownersName,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: const StoriesBubble(
-          isFeed: true,
-          imageUrl:
-              'https://media-exp2.licdn.com/dms/image/C4E03AQFsCnlCKnx_MA/profile-displayphoto-shrink_800_800/0/1601238197714?e=1661990400&v=beta&t=-W3csJ2_PiDPqbJrqjpMFufQq6hkLx9YZwJ1uY41wdY',
-          name: 'Sérgio',
+    final mediaQuery = MediaQuery.of(context);
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16.0),
+      child: SizedBox(
+        width: mediaQuery.size.width,
+        height: mediaQuery.size.height * .7,
+        child: Scaffold(
+          backgroundColor: Colors.black,
+          appBar: AppBar(
+            shape: Border.all(
+              color: Colors.black,
+            ),
+            elevation: 0,
+            titleSpacing: 0,
+            leadingWidth: 0,
+            backgroundColor: Colors.black,
+            title: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: StoriesBubble(
+                    isToolbar: true,
+                    contexto: context,
+                    isFeed: true,
+                    imageUrl: ownerPortrait,
+                    name: ownersName,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Text(
+                      style:
+                          const TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                      ownersName),
+                ),
+              ],
+            ),
+          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                height: mediaQuery.size.height * .5,
+                width: mediaQuery.size.width,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(feedImage),
+                  ),
+                ),
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.favorite_border),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.messenger_outline),
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.send_outlined),
+                  ),
+                  const Spacer(),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(Icons.bookmark_border_outlined),
+                  ),
+                ],
+              ),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          style: const TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                          curtidas,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: Text.rich(
+                        TextSpan(children: [
+                          TextSpan(
+                              text: ownersName,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white)),
+                          TextSpan(
+                            text: '  $comentarioPrincipal',
+                            style: const TextStyle(
+                              color: Colors.white,
+                            ),
+                          )
+                        ]),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
